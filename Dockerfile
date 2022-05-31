@@ -10,7 +10,7 @@ COPY . /usr/src/app/
 RUN npm install
 
 ENV HOST 0.0.0.0
-EXPOSE 3000
+EXPOSE $PORT
 
 # start command
 CMD ["node", "index.js"]
