@@ -5,7 +5,7 @@
         "args": [
           "build",
           "-t",
-          "gcr.io/otwarte-klatki/$REPO_NAME:$COMMIT_SHA",
+          "gcr.io/otwarte-klatki/ocuk-paypal-ipn:$COMMIT_SHA",
           "."
         ]
       },
@@ -13,7 +13,7 @@
         "name": "gcr.io/cloud-builders/docker",
         "args": [
           "push",
-          "gcr.io/otwarte-klatki/$REPO_NAME:$COMMIT_SHA"
+          "gcr.io/otwarte-klatki/ocuk-paypal-ipn:$COMMIT_SHA"
         ]
       },
       {
@@ -21,9 +21,9 @@
         "args": [
           "run",
           "deploy",
-          "$REPO_NAME-$BRANCH_NAME",
+          "ocuk-paypal-ipn-$BRANCH_NAME",
           "--image",
-          "gcr.io/otwarte-klatki/$REPO_NAME:$COMMIT_SHA",
+          "gcr.io/otwarte-klatki/ocuk-paypal-ipn:$COMMIT_SHA",
           "--region",
           "europe-west1",
           "--platform",
@@ -33,6 +33,6 @@
       }
     ],
     "images": [
-      "gcr.io/otwarte-klatki/$REPO_NAME"
+      "gcr.io/otwarte-klatki/ocuk-paypal-ipn"
     ]
 }
