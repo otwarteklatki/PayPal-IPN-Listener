@@ -15,7 +15,7 @@ Push to master
 https://ocuk-paypal-ipn-master-uepvew4upa-ew.a.run.app
 
 ### The rest of the README
-The readme from the forked repo is below.. I stole the base of this API from github because getting paypal IPNs to work was a nightmare. 
+The readme from the forked repo is below... I stole the base of this API from some wonderful github account because getting paypal IPNs to work was a nightmare. 
 
 <h1 align="center">
   PayPal IPN Listener
