@@ -10,7 +10,7 @@ module.exports = {
             const donation = ipnToDonationObject(ipn);
             const json = JSON.stringify(donation);
             logger.info(`[${Date.now()}] Requesting to email ${JSON.stringify(ipn.payer_email)}`);
-            axios.post('https://uk-sendgrid-api-main-uepvew4upa-ew.a.run.app/paypal', json, {
+            axios.post(process.env.SENDGRID_API_SERVICE_URL, json, {
                 headers: {
                     accept: '*/*',
                     'Content-Type': 'application/json',
