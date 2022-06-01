@@ -1,3 +1,22 @@
+# PayPal-IPN-Listener
+This project listens for paypal IPNs from the OpenCages UK paypal account. It will then record these IPNs in mongodb and request [this project](https://github.com/otwarteklatki/uk-sendgrid-api) to send a receipt email. 
+
+### ENV VARS
+- MONGO_URI - Mongodb uri, point this at some mongodb instance and database.
+- SENDGRID_API_SERVICE_KEY - API key so that this project can request sending an email from [this project](https://github.com/otwarteklatki/uk-sendgrid-api), it has to match the IPN_LISTENER_API_KEY env var on the deployment of that project for a request to be successful. 
+
+### How do I test this?
+Use https://developer.paypal.com/developer/ipnSimulator/ to test sending IPNs to the API. I would suggest using a local tunnel of some sort to test this on your local. 
+
+### How to deploy
+Push to main
+
+### PROD URL
+https://ocuk-paypal-ipn-master-uepvew4upa-ew.a.run.app
+
+### The rest of the README
+The readme from the forked repo is below.. I stole the base of this API from github because getting paypal IPNs to work was a nightmare. 
+
 <h1 align="center">
   PayPal IPN Listener
 </h1>
