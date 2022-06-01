@@ -10,11 +10,14 @@ module.exports = {
             const donation = ipnToDonationObject(ipn);
             const json = JSON.stringify(donation);
             logger.info(`[${Date.now()}] Requesting to email ${JSON.stringify(ipn.payer_email)}`);
-            return axios.post('https://uk-sendgrid-api-main-uepvew4upa-ew.a.run.app', json, {
+            axios.post('https://uk-sendgrid-api-main-uepvew4upa-ew.a.run.app', json, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            });
+            }).then(result => { 
+                logger.info(`[${Date.now()}] Requested to email ${JSON.stringify(ipn.payer_email)}, result: ${JSON.stringify(result)}`);
+                return result; 
+            })
         }
         logger.info(`[${Date.now()}] Not emailing ${JSON.stringify(ipn.payer_email)} because their payment hasn't completed.`);
         return { success: false };
