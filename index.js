@@ -111,7 +111,11 @@ app.post('/', (req, res) => {
             }
             // Send receipt email for payment
             try {
-                receiptEmailApi.sendIpn(req.body);
+                if (receiptEmailApi.shouldSendEmails()) {
+                  receiptEmailApi.sendIpn(req.body);
+                } else {
+                  logger.info(`[${Date.now()}] Not emailing receipt because sendgrid service api key not set.`);
+                }
             } catch (err) {
                 logger.error(`[${Date.now()}] Error sending receipt to sendgrid api ${err}`);
             }

@@ -19,6 +19,13 @@ module.exports = {
         logger.info(`[${Date.now()}] Not emailing ${JSON.stringify(ipn.payer_email)} because their payment hasn't completed.`);
         return { success: false };
     },
+    shouldSendEmails() {
+        if (process.env.SENDGRID_API_SERVICE_KEY) {
+            return true;
+        } else {
+            return false;
+        }
+    },
 };
 
 function ipnToDonationObject(ipn) {
