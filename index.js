@@ -95,15 +95,20 @@ app.post('/', (req, res) => {
         logger.error(`[${Date.now()}] IPN Invalid: ${body}`);
       }
       // Save the IPN and associated data to MongoDB
-      newIPN.create({
-        ipnMessageRaw: JSON.stringify(req.body),
-        ipnMessage: req.body,
-        ipnPostback: postreq,
-        status: body,
-        timestamp: Date.now(),
-      }, (err) => {
-        if (err) logger.error(`[${Date.now()}] DB Create Error${err}`);
-      }).catch((err) => { logger.error(`[${Date.now()}] DB Create Error${err}`); });
+      console.log(newIPN);
+      try {
+        newIPN.create({
+          ipnMessageRaw: JSON.stringify(req.body),
+          ipnMessage: req.body,
+          ipnPostback: postreq,
+          status: body,
+          timestamp: Date.now(),
+        }, (err) => {
+          if (err) logger.error(`[${Date.now()}] DB Create Error ${err}`);
+        })
+      } catch (error) {
+        logger.error(`[${Date.now()}] DB Create Error ${error}`);
+      }
     }
   });
 });
