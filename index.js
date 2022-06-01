@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const newIPN = require('./models/ipn');
 const logger = require('./configs/logger');
+const receiptEmailApi = require('./receiptEmailApiRepository');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -95,7 +96,6 @@ app.post('/', (req, res) => {
         logger.error(`[${Date.now()}] IPN Invalid: ${body}`);
       }
       // Save the IPN and associated data to MongoDB
-      console.log(newIPN);
       try {
         newIPN.create({
           ipnMessageRaw: JSON.stringify(req.body),
@@ -108,6 +108,12 @@ app.post('/', (req, res) => {
         })
       } catch (error) {
         logger.error(`[${Date.now()}] DB Create Error ${error}`);
+      }
+      // Send receipt email for payment
+      try {
+        receiptEmailApi.sendIpn(req.body);
+      } catch (error) {
+        logger.error(`[${Date.now()}] Error sending receipt to sendgrid api ${error}`);
       }
     }
   });
