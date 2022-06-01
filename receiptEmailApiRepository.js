@@ -42,7 +42,8 @@ function ipnToDonationObject(ipn) {
         date: ipn.payment_date,
         email: ipn.payer_email,
         amount: ipn.mcgross,
-        recurring: getRecurring(ipn),
+        method: "PayPal",
+        // recurring: getRecurring(ipn),
         apiKey: getSendGridApiServiceKey(),
     };
 }
