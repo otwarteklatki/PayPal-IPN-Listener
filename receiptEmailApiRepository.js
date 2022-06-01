@@ -12,14 +12,15 @@ module.exports = {
             logger.info(`[${Date.now()}] Requesting to email ${JSON.stringify(ipn.payer_email)}`);
             axios.post('https://uk-sendgrid-api-main-uepvew4upa-ew.a.run.app/paypal', json, {
                 headers: {
-                    'accept': '*/*',
-                    'Content-Type': 'application/json'
-                }
+                    accept: '*/*',
+                    'Content-Type': 'application/json',
+                },
             }).then((result) => {
                 logger.info(`[${Date.now()}] Requested to email ${JSON.stringify(ipn.payer_email)}, result: ${JSON.stringify(result)}`);
                 return result;
             }).catch((error) => {
                 logger.error(`[${Date.now()}] Email service error: ${JSON.stringify(error)}`);
+                return { success: false, error };
             });
         } else {
             logger.info(`[${Date.now()}] Not emailing ${JSON.stringify(ipn.payer_email)} because their payment hasn't completed.`);
