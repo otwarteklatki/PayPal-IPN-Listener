@@ -41,11 +41,20 @@ function ipnToDonationObject(ipn) {
         donorLastName: ipn.last_name,
         date: ipn.payment_date,
         email: ipn.payer_email,
-        amount: ipn.mcgross,
+        amount: getAmount(ipn),
         method: "PayPal",
         // recurring: getRecurring(ipn),
         apiKey: getSendGridApiServiceKey(),
     };
+}
+
+function getAmount(ipn) {
+    if (ipn.mcgross) {
+        return ipn.mcgross;
+    } else if (ipn.mcgross1) {
+        return ipn.mcgross1;
+    }
+    return "Error communicating with PayPal, Sorry about this. Please reach out if you need confirmation of your donation amount."
 }
 
 function getRecurring(ipn) {
