@@ -9,7 +9,7 @@ This project listens for paypal IPNs from the OpenCages UK paypal account. It wi
 Use https://developer.paypal.com/developer/ipnSimulator/ to test sending IPNs to the API. I would suggest using a local tunnel of some sort to test this on your local. 
 
 ### How to deploy
-Push to main
+Push to master
 
 ### PROD URL
 https://ocuk-paypal-ipn-master-uepvew4upa-ew.a.run.app
