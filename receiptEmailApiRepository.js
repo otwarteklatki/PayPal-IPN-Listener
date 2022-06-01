@@ -45,14 +45,15 @@ function ipnToDonationObject(ipn) {
         method: "PayPal",
         // recurring: getRecurring(ipn),
         apiKey: getSendGridApiServiceKey(),
+        currency: ipn.mc_currency
     };
 }
 
 function getAmount(ipn) {
-    if (ipn.mcgross) {
-        return ipn.mcgross;
-    } else if (ipn.mcgross1) {
-        return ipn.mcgross1;
+    if (ipn.mc_gross) {
+        return ipn.mc_gross;
+    } else if (ipn.mc_gross1) {
+        return ipn.mc_gross1;
     }
     return "Error communicating with PayPal, Sorry about this. Please reach out if you need confirmation of your donation amount."
 }
