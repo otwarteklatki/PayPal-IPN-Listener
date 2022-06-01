@@ -4,6 +4,7 @@ This project listens for paypal IPNs from the OpenCages UK paypal account. It wi
 ### ENV VARS
 - MONGO_URI - Mongodb uri, point this at some mongodb instance and database.
 - SENDGRID_API_SERVICE_KEY - API key so that this project can request sending an email from [this project](https://github.com/otwarteklatki/uk-sendgrid-api), it has to match the IPN_LISTENER_API_KEY env var on the deployment of that project for a request to be successful. 
+- SENDGRID_API_SERVICE_URL - url for the deployment of [this project](https://github.com/otwarteklatki/uk-sendgrid-api).
 
 ### How do I test this?
 Use https://developer.paypal.com/developer/ipnSimulator/ to test sending IPNs to the API. I would suggest using a local tunnel of some sort to test this on your local. 
